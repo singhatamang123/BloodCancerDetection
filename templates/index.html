@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Blood Cancer Detection</title>
+    <! --Bootstrap -- >
+    <link rel="stylesheet" href="static/css/bootstrap.css" />
+    <script src="static/js/bootstrap.bundle.js"></script>
+    <script src="static/js/bootstrap.js"></script>
+    <script src="static/js/jquery-3.6.0.js"></script>
+  </head>
+  <style>
+    .background {
+      background-image: url("static/images/download.jpeg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 80vh;
+
+    }
+  </style>
+  <body class="background">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #2c3e50"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('index')}}">Blood Cancer Detection</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href={{url_for('index')}}>Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('upload')}}">Upload</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+         
+            {% else %}
+                      
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            </li>
+          
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+    <div class="container">
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-success">
+  
+        {{message}}
+      </div>
+      {% endfor %}
+  
+    </div>
+  
+
+
+    {% block body %} 
+    {% endblock %}
+
+    
+    
+    {% block login%} {%block register%} {%block admin %} {%endblock %}
+      {% endblock %} {% endblock %}
+
+   
+
+    <!-- Footer -->
+    <div class="container">
+      <hr />
+      <footer>
+        Blood Cancer Detection
+        <p>
+        Blood Cancer Detection is a web application that can detect whether a person has cancer
+          or not through microscopic blood cell images. 
+          Only thing the u need to do is to upload the microscopic blood cell iamges and the system will show you the result whether you ahve cancer or not. 
+        </p>
+        <p>The application is built using Python, Flask, and Bootstrap.</p>
+      </footer>
+    </div>
+  </body>
+</html>
